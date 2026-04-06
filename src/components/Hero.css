@@ -319,6 +319,11 @@
     height: 35px;
   }
 
+  .tech-carousel {
+    width: 100%;
+    max-width: 320px;
+  }
+
   @keyframes scroll {
     0% {
       transform: translateX(0);
@@ -326,6 +331,91 @@
     100% {
       transform: translateX(-469px);
     }
+  }
+}
+
+@media (max-width: 430px) {
+  .hero {
+    min-height: auto;
+    padding: 1rem 0;
+  }
+
+  .hero-container {
+    padding: 1rem;
+    gap: 1.5rem;
+  }
+
+  .hero-name {
+    font-size: 1.75rem;
+    margin: 0 0 0.3rem 0;
+  }
+
+  .hero-role {
+    font-size: 0.95rem;
+  }
+
+  .hero-tagline {
+    font-size: 0.9rem;
+    margin: 1.25rem 0;
+    max-width: 100%;
+    line-height: 1.5;
+  }
+
+  .hero-header {
+    margin-bottom: 0.75rem;
+  }
+
+  .hero-stack {
+    margin: 1.25rem 0;
+    gap: 0.75rem;
+  }
+
+  .stack-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+  }
+
+  .tech-carousel {
+    width: 100%;
+    max-width: 310px;
+    padding: 0.75rem 0;
+    overflow: visible;
+  }
+
+  .carousel-track {
+    gap: 1.5rem;
+  }
+
+  .carousel-item {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+  }
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-384px);
+    }
+  }
+
+  .hero-location {
+    font-size: 0.8rem;
+    margin: 0.75rem 0 1rem 0;
+  }
+
+  .hero-cta {
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 1.75rem;
+  }
+
+  .btn {
+    padding: 0.65rem 1.25rem;
+    font-size: 0.75rem;
+    width: 100%;
   }
 }
 
@@ -399,5 +489,94 @@
     padding: 0.7rem 1.2rem;
     font-size: 0.75rem;
     width: 100%;
+  }
+}
+
+/* Extra small mobile screens (360px) */
+@media (max-width: 360px) {
+  .hero {
+    min-height: auto;
+    padding: 0.75rem 0;
+  }
+
+  .hero-container {
+    padding: 0.75rem 0.5rem;
+    gap: 1rem;
+  }
+
+  .hero-name {
+    font-size: 1.25rem;
+    margin: 0 0 0.25rem 0;
+  }
+
+  .hero-role {
+    font-size: 0.85rem;
+  }
+
+  .hero-tagline {
+    font-size: 0.8rem;
+    margin: 1rem 0;
+    line-height: 1.4;
+  }
+
+  .hero-header {
+    margin-bottom: 0.75rem;
+  }
+
+  .hero-stack {
+    margin: 1rem 0;
+    gap: 0.75rem;
+  }
+
+  .stack-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+  }
+
+  .tech-carousel {
+    width: 280px;
+    padding: 0.75rem 0;
+  }
+
+  .carousel-track {
+    gap: 1.5rem;
+  }
+
+  .carousel-item {
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+  }
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-378px);
+    }
+  }
+
+  .hero-location {
+    font-size: 0.75rem;
+    margin: 0.75rem 0 1rem 0;
+  }
+
+  .hero-cta {
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-top: 1.5rem;
+  }
+
+  .btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.7rem;
+    width: 100%;
+    border-radius: 6px;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    letter-spacing: 0;
   }
 }

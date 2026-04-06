@@ -135,6 +135,33 @@
   }
 }
 
+@media (max-width: 430px) {
+  .experience-counter {
+    gap: 0.75rem;
+  }
+
+  .counter-header h3 {
+    font-size: 1.1rem;
+  }
+
+  .counter-value {
+    font-size: 1.3rem;
+  }
+
+  .counter-label {
+    font-size: 0.5rem;
+  }
+
+  .counter-separator {
+    font-size: 0.9rem;
+    margin: 0 0.05rem;
+  }
+
+  .counter-display {
+    gap: 0.2rem;
+  }
+}
+
 @media (max-width: 375px) {
   .experience-counter {
     gap: 0.75rem;
