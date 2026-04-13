@@ -113,6 +113,13 @@ export default function Hero() {
                 </div>
                 <div className="carousel-item">
                   <img
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+                    alt="JavaScript"
+                    title="JavaScript"
+                  />
+                </div>
+                <div className="carousel-item">
+                  <img
                     src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg"
                     alt="TypeScript"
                     title="TypeScript"

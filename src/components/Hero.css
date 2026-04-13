@@ -141,9 +141,9 @@
 
 .carousel-track {
   display: flex;
-  gap: 2rem;
   animation: scroll 20s linear infinite;
   width: max-content;
+  will-change: transform;
 }
 
 .carousel-track:hover {
@@ -157,6 +157,7 @@
   flex-shrink: 0;
   width: 45px;
   height: 45px;
+  margin-right: 2rem;
   cursor: pointer;
 }
 
@@ -182,7 +183,7 @@
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-539px);
+    transform: translateX(-50%);
   }
 }
 
