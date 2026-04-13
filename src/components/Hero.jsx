@@ -137,7 +137,9 @@ export default function Hero() {
           {/* CTA Buttons */}
           <div className="hero-cta">
             <a
-              href="#projects"
+              href="https://github.com/eriik1212"
+              target="_blank"
+              rel="noopener noreferrer"
               className="btn btn-primary"
             >
               View Projects
