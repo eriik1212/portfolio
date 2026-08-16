@@ -1,6 +1,8 @@
 import "./Hero.css";
 import ExperienceCounter from "./ExperienceCounter";
 
+const SHOW_PROJECTS_BUTTON = false;
+
 export default function Hero() {
   return (
     <section className="hero">
@@ -138,19 +140,21 @@ export default function Hero() {
 
           {/* Location */}
           <p className="hero-location">
-            📍 Barcelona, Spain • Available for remote work
+            📍 Barcelona, Spain • Available for remote and on-site work
           </p>
 
           {/* CTA Buttons */}
           <div className="hero-cta">
-            <a
-              href="https://github.com/eriik1212"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-primary"
-            >
-              View Projects
-            </a>
+            {SHOW_PROJECTS_BUTTON && (
+              <a
+                href="https://github.com/eriik1212"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-primary"
+              >
+                View Projects
+              </a>
+            )}
             <a
               href="https://www.linkedin.com/in/erikmartingarzon/"
               target="_blank"
