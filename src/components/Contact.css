@@ -59,6 +59,38 @@
   box-shadow: none;
 }
 
+.contact-email {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  font-family: var(--font-mono);
+  font-size: clamp(0.85rem, 1.4vw, 1rem);
+  color: rgb(255 244 230 / 0.8);
+}
+
+.contact-email-address {
+  overflow-wrap: anywhere;
+}
+
+.contact-copy {
+  padding: 4px 12px;
+  border: 1px solid rgb(255 244 230 / 0.35);
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--cream);
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.contact-copy:hover {
+  background: var(--cream);
+  color: var(--ink);
+}
+
 .contact-bottom {
   display: flex;
   flex-wrap: wrap;
@@ -71,3 +103,4 @@
   font-size: 0.8rem;
   color: rgb(255 244 230 / 0.6);
 }
+

@@ -179,3 +179,37 @@
     padding: 0 14px;
   }
 }
+
+/* Very narrow phones (320–374px): shrink every pill so the language selector still fits */
+@media (max-width: 374px) {
+  .nav {
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    gap: 6px;
+  }
+
+  .nav-right {
+    gap: 4px;
+  }
+
+  .nav-logo,
+  .lang-toggle {
+    height: 42px;
+    padding: 0 10px;
+    font-size: 0.85rem;
+  }
+
+  .lang-caret {
+    display: none;
+  }
+
+  .nav-links {
+    padding: 3px;
+  }
+
+  .nav-links a {
+    padding: 8px 8px;
+    font-size: 0.8rem;
+  }
+}

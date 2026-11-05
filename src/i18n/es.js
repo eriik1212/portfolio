@@ -129,6 +129,11 @@ const es = {
     label: "Contacto",
     title: "Construyamos algo que la gente recuerde.",
     location: "Manresa · Barcelona · Remoto y presencial",
+    email: "Escríbeme",
+    emailSubject: "Contacto desde erik-mg.com",
+    copy: "Copiar",
+    copied: "¡Copiado!",
+    copyLabel: "Copiar dirección de email",
   },
 };
 

@@ -1,7 +1,9 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap, SplitText, useGSAP } from "../lib/motion";
 import { useI18n } from "../i18n";
 import "./Contact.css";
+
+const EMAIL = "erikmarting1200@gmail.com";
 
 const LINKS = [
   { label: "LinkedIn", href: "https://www.linkedin.com/in/erikmartingarzon/", variant: "pill-btn--sun" },
@@ -11,6 +13,23 @@ const LINKS = [
 export default function Contact() {
   const rootRef = useRef(null);
   const { t } = useI18n();
+  const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    if (!copied) return;
+    const id = setTimeout(() => setCopied(false), 2000);
+    return () => clearTimeout(id);
+  }, [copied]);
+
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(EMAIL);
+      setCopied(true);
+    } catch {
+      // Clipboard can be blocked (insecure context, permissions): fall back to the mail client.
+      window.location.href = `mailto:${EMAIL}`;
+    }
+  };
 
   useGSAP(
     () => {
@@ -89,6 +108,12 @@ export default function Contact() {
         <h2 className="contact-title">{t.contact.title}</h2>
 
         <div className="contact-actions">
+          <a
+            href={`mailto:${EMAIL}?subject=${encodeURIComponent(t.contact.emailSubject)}`}
+            className="pill-btn magnetic pill-btn--tomato"
+          >
+            {t.contact.email} <span className="arrow">→</span>
+          </a>
           {LINKS.map((link) => (
             <a
               key={link.label}
@@ -102,6 +127,24 @@ export default function Contact() {
           ))}
         </div>
 
+        <p className="contact-email">
+          <span className="contact-email-address">{EMAIL}</span>
+          <button
+            type="button"
+            className="contact-copy"
+            onClick={copyEmail}
+            aria-label={t.contact.copyLabel}
+          >
+            {copied ? t.contact.copied : t.contact.copy}
+          </button>
+          <span
+            className="visually-hidden"
+            aria-live="polite"
+          >
+            {copied ? t.contact.copied : ""}
+          </span>
+        </p>
+
         <div className="contact-bottom">
           <span>© {new Date().getFullYear()} Erik Martín Garzón</span>
           <span>{t.contact.location}</span>
@@ -110,3 +153,4 @@ export default function Contact() {
     </footer>
   );
 }
+

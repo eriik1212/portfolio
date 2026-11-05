@@ -129,6 +129,11 @@ const ca = {
     label: "Contacte",
     title: "Construïm alguna cosa que la gent recordi.",
     location: "Manresa · Barcelona · Remot i presencial",
+    email: "Escriu-me",
+    emailSubject: "Contacte des d'erik-mg.com",
+    copy: "Copiar",
+    copied: "Copiat!",
+    copyLabel: "Copiar l'adreça de correu",
   },
 };
 

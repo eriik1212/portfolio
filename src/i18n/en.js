@@ -129,6 +129,11 @@ const en = {
     label: "Contact",
     title: "Let's build something people remember.",
     location: "Manresa · Barcelona · Remote & on-site",
+    email: "Email me",
+    emailSubject: "Hello from erik-mg.com",
+    copy: "Copy",
+    copied: "Copied!",
+    copyLabel: "Copy email address",
   },
 };
 

@@ -253,8 +253,10 @@
   right: 0;
   bottom: 0;
   width: 38%;
+  min-width: 112px;
   aspect-ratio: 9 / 17;
-  padding: 18px 10px 10px;
+  padding: 18px 8px 8px;
+  overflow: hidden;
   border: var(--border);
   border-radius: 22px;
   background: var(--paper);
@@ -276,19 +278,22 @@
 .vis-phone-title {
   font-size: 0.72rem;
   font-weight: 800;
+  line-height: 1.1;
   margin-bottom: 6px;
 }
 
 .vis-event {
   display: flex;
+  flex-wrap: wrap; /* chip drops below the name when the phone is narrow */
   align-items: center;
   justify-content: space-between;
-  gap: 4px;
-  padding: 7px;
-  margin-bottom: 6px;
+  gap: 3px;
+  padding: 5px 6px;
+  margin-bottom: 5px;
   border: 1.5px solid var(--ink);
   border-radius: 10px;
   font-size: 0.62rem;
+  line-height: 1.15;
 }
 
 .vis-chip {
