@@ -1,0 +1,406 @@
+<!doctype html>
+<!-- Static 404 page: Vercel serves it for any URL that doesn't exist. -->
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#fff4e6" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <title>404 · Erik Martín</title>
+    <style>
+      :root {
+        --cream: #fff4e6;
+        --paper: #fffaf3;
+        --ink: #17130f;
+        --ink-soft: #4a4038;
+        --tomato: #ff4d2e;
+        --sun: #ffc83d;
+        --border: 2px solid var(--ink);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        min-height: 100svh;
+        display: flex;
+        flex-direction: column;
+        font-family: "Bricolage Grotesque", system-ui, sans-serif;
+        background:
+          radial-gradient(60% 60% at 85% 10%, rgb(185 166 255 / 0.55), transparent 70%),
+          radial-gradient(50% 50% at 10% 90%, rgb(255 200 61 / 0.5), transparent 70%),
+          radial-gradient(45% 45% at 60% 40%, rgb(255 138 216 / 0.4), transparent 70%),
+          var(--cream);
+        color: var(--ink);
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      :focus-visible {
+        outline: 3px solid #3e6bff;
+        outline-offset: 3px;
+        border-radius: 6px;
+      }
+
+      header {
+        padding: 14px clamp(16px, 4vw, 48px);
+      }
+
+      .logo {
+        display: inline-flex;
+        align-items: center;
+        height: 48px;
+        padding: 0 18px;
+        border: var(--border);
+        border-radius: 999px;
+        background: var(--paper);
+        font-weight: 800;
+        font-size: 1.1rem;
+        letter-spacing: -0.02em;
+        box-shadow: 3px 3px 0 var(--ink);
+      }
+
+      .logo span {
+        color: var(--tomato);
+      }
+
+      main {
+        flex: 1;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        gap: clamp(24px, 4vw, 64px);
+        width: 100%;
+        max-width: 1300px;
+        margin: 0 auto;
+        padding: clamp(24px, 6vh, 64px) clamp(16px, 4vw, 48px) clamp(40px, 8vh, 96px);
+      }
+
+      .label {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.8rem;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--tomato);
+      }
+
+      .label::before {
+        content: "";
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: currentColor;
+      }
+
+      h1 {
+        margin-top: 18px;
+        font-size: clamp(2.4rem, 5.4vw, 5rem);
+        font-weight: 800;
+        line-height: 0.95;
+        letter-spacing: -0.05em;
+      }
+
+      p.text {
+        margin-top: 20px;
+        max-width: 36ch;
+        font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+        font-weight: 500;
+        color: var(--ink-soft);
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 32px;
+        padding: 16px 28px;
+        border: 2px solid var(--paper);
+        border-radius: 999px;
+        background: var(--ink);
+        color: var(--cream);
+        font-weight: 700;
+        font-size: 1.05rem;
+        box-shadow: 4px 4px 0 var(--ink);
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+
+      .btn:hover {
+        transform: translate(-2px, -2px);
+        box-shadow: 6px 6px 0 var(--ink);
+      }
+
+      .btn .arrow {
+        transition: transform 0.2s ease;
+      }
+
+      .btn:hover .arrow {
+        transform: translateX(-4px);
+      }
+
+      /* Sea scene */
+      .scene {
+        position: relative;
+        aspect-ratio: 5 / 4;
+        border: var(--border);
+        border-radius: 28px;
+        background: linear-gradient(#d8f1ff 0 64%, #8fd9ff 64%);
+        box-shadow: 8px 8px 0 var(--ink);
+        overflow: hidden;
+      }
+
+      .big-404 {
+        position: absolute;
+        top: 6%;
+        left: 0;
+        right: 0;
+        text-align: center;
+        font-size: clamp(5rem, 15vw, 13rem);
+        font-weight: 800;
+        line-height: 1;
+        letter-spacing: -0.06em;
+        color: transparent;
+        -webkit-text-stroke: 3px var(--ink);
+        opacity: 0.85;
+        user-select: none;
+      }
+
+      .ship {
+        position: absolute;
+        left: 50%;
+        bottom: 15%;
+        width: 62%;
+        translate: -50% 0;
+        animation: drift 9s ease-in-out infinite;
+      }
+
+      .ship-rock {
+        transform-box: fill-box;
+        transform-origin: center bottom;
+        animation: rock 3.2s ease-in-out infinite;
+      }
+
+      .flag {
+        transform-box: fill-box;
+        transform-origin: left center;
+        animation: flag 1.2s ease-in-out infinite alternate;
+      }
+
+      @keyframes drift {
+        50% {
+          translate: -42% 0;
+        }
+      }
+
+      @keyframes rock {
+        0%,
+        100% {
+          transform: rotate(-4deg);
+        }
+        50% {
+          transform: translateY(5px) rotate(4deg);
+        }
+      }
+
+      @keyframes flag {
+        to {
+          transform: skewY(-6deg) scaleX(0.92);
+        }
+      }
+
+      .waves {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 18%;
+        background: #3e9be0;
+      }
+
+      /* Scalloped crest on top of the water, scrolling sideways */
+      .waves::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 100%;
+        height: 16px;
+        background: radial-gradient(circle at 16px 0, transparent 15px, #3e9be0 16px) 0 0 / 32px 16px repeat-x;
+        animation: waves 3s linear infinite;
+      }
+
+      @keyframes waves {
+        to {
+          background-position: 32px 0;
+        }
+      }
+
+      @media (max-width: 760px) {
+        main {
+          grid-template-columns: 1fr;
+        }
+
+        .scene {
+          order: -1;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation: none !important;
+          transition: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <a class="logo" href="/" aria-label="Erik Martín Garzón">EMG<span>.</span></a>
+    </header>
+
+    <main>
+      <div>
+        <p class="label" data-i18n="label">Error 404</p>
+        <h1 data-i18n="title">Este rumbo no lleva a ningún puerto.</h1>
+        <p class="text" data-i18n="text">
+          La página que buscas no existe o el enlace está mal copiado.
+        </p>
+        <a class="btn" id="home" href="/es"
+          ><span class="arrow" aria-hidden="true">←</span> <span data-i18n="cta">Volver al inicio</span></a
+        >
+      </div>
+
+      <div class="scene" aria-hidden="true">
+        <div class="big-404">404</div>
+        <svg class="ship" viewBox="0 0 224 150">
+          <g class="ship-rock" stroke-linejoin="round" stroke-linecap="round">
+            <g stroke="#17130f" stroke-width="1" opacity="0.45">
+              <path d="M120 14 L62 92 M120 14 L196 96 M166 34 L186 46 M72 36 L24 84" />
+            </g>
+            <g fill="#17130f">
+              <rect x="118" y="12" width="4.5" height="86" rx="2" />
+              <rect x="164" y="32" width="4" height="66" rx="2" />
+              <rect x="70" y="34" width="4" height="52" rx="2" />
+              <rect x="112" y="28" width="17" height="6" rx="2" />
+            </g>
+            <g class="flag">
+              <path d="M122 13 Q130 9 138 13 Q146 17 153 13 V27 Q146 31 138 27 Q130 23 122 27 Z" fill="#17130f" />
+              <circle cx="137" cy="19" r="3" fill="#fff4e6" />
+              <path d="M132 24 L142 24" stroke="#fff4e6" stroke-width="1.6" />
+            </g>
+            <g fill="#fffaf3" stroke="#17130f" stroke-width="2.5">
+              <path d="M104 38 Q120 34 136 38 Q140 50 136 61 Q120 57 104 61 Q100 50 104 38 Z" />
+              <path d="M99 65 Q120 61 141 65 Q146 77 141 90 Q120 86 99 90 Q94 77 99 65 Z" />
+              <path d="M154 44 Q166 41 178 44 Q181 54 178 63 Q166 60 154 63 Q151 54 154 44 Z" />
+              <path d="M151 67 Q166 64 181 67 Q185 77 181 88 Q166 85 151 88 Q147 77 151 67 Z" />
+            </g>
+            <circle cx="120" cy="74" r="5" fill="#17130f" />
+            <rect x="117" y="77" width="6" height="4" rx="1" fill="#17130f" />
+            <circle cx="118.2" cy="73.6" r="1.3" fill="#fffaf3" />
+            <circle cx="121.8" cy="73.6" r="1.3" fill="#fffaf3" />
+            <path d="M112 84 L128 80 M112 80 L128 84" stroke="#17130f" stroke-width="2" />
+            <g fill="#ffc83d" stroke="#17130f" stroke-width="2.5">
+              <path d="M75 40 Q100 58 75 80 Z" />
+              <path d="M186 46 Q204 64 215 83 L188 86 Z" />
+            </g>
+            <path d="M190 96 L218 82" stroke="#17130f" stroke-width="4" />
+            <path d="M18 82 H58 L61 96 H200 Q194 114 174 126 H54 Q30 118 18 82 Z" fill="#ff4d2e" stroke="#17130f" stroke-width="2.5" />
+            <path d="M24 102 Q110 106 196 102 L193 110 Q110 114 28 110 Z" fill="#ffc83d" stroke="#17130f" stroke-width="2" />
+            <g fill="#17130f">
+              <rect x="70" y="104" width="8" height="5" rx="1.5" />
+              <rect x="94" y="104" width="8" height="5" rx="1.5" />
+              <rect x="118" y="104" width="8" height="5" rx="1.5" />
+              <rect x="142" y="104" width="8" height="5" rx="1.5" />
+              <rect x="166" y="104" width="8" height="5" rx="1.5" />
+            </g>
+            <g fill="#ffc83d" stroke="#17130f" stroke-width="1.5">
+              <rect x="28" y="87" width="7" height="7" rx="1.5" />
+              <rect x="40" y="87" width="7" height="7" rx="1.5" />
+            </g>
+            <path d="M60 91 H198 M18 77 H58" stroke="#17130f" stroke-width="2" />
+            <path
+              d="M64 91 V96 M80 91 V96 M96 91 V96 M144 91 V96 M160 91 V96 M176 91 V96 M192 91 V96 M24 77 V82 M38 77 V82 M52 77 V82"
+              stroke="#17130f"
+              stroke-width="1.5"
+            />
+          </g>
+        </svg>
+        <div class="waves"></div>
+      </div>
+    </main>
+
+    <script>
+      // Same order as the main site: previous choice, then browser language, then English.
+      (function () {
+        var copy = {
+          es: {
+            doc: "Página no encontrada · Erik Martín",
+            label: "Error 404",
+            title: "Este rumbo no lleva a ningún puerto.",
+            text: "La página que buscas no existe o el enlace está mal copiado.",
+            cta: "Volver al inicio",
+          },
+          ca: {
+            doc: "Pàgina no trobada · Erik Martín",
+            label: "Error 404",
+            title: "Aquest rumb no porta a cap port.",
+            text: "La pàgina que busques no existeix o l'enllaç està mal copiat.",
+            cta: "Tornar a l'inici",
+          },
+          en: {
+            doc: "Page not found · Erik Martín",
+            label: "Error 404",
+            title: "This course doesn't lead to any port.",
+            text: "The page you're looking for doesn't exist, or the link was copied wrong.",
+            cta: "Back to home",
+          },
+        };
+
+        var lang = null;
+        try {
+          var stored = localStorage.getItem("lang");
+          if (copy[stored]) lang = stored;
+        } catch (e) {}
+        if (!lang) {
+          var prefs = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language];
+          for (var i = 0; i < prefs.length && !lang; i++) {
+            var base = String(prefs[i] || "").toLowerCase().split("-")[0];
+            if (copy[base]) lang = base;
+          }
+        }
+        lang = lang || "en";
+
+        var t = copy[lang];
+        document.documentElement.lang = lang;
+        document.title = t.doc;
+        document.querySelectorAll("[data-i18n]").forEach(function (el) {
+          el.textContent = t[el.getAttribute("data-i18n")];
+        });
+        document.getElementById("home").setAttribute("href", "/" + lang);
+      })();
+    </script>
+  </body>
+</html>
