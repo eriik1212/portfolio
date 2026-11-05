@@ -1,171 +1,137 @@
+import { useRef } from "react";
+import { gsap, SplitText, useGSAP, scrollToTarget } from "../lib/motion";
+import Grainient from "./bits/Grainient";
+import RotatingText from "./bits/RotatingText";
 import "./Hero.css";
-import ExperienceCounter from "./ExperienceCounter";
 
-const SHOW_PROJECTS_BUTTON = false;
+const HERO_COLORS = ["#fff4e6", "#ffc83d", "#ff8a5c", "#ff8ad8", "#b9a6ff", "#8fd9ff"];
 
 export default function Hero() {
+  const rootRef = useRef(null);
+
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia();
+
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        const split = SplitText.create(".hero-name-line", {
+          type: "chars",
+          mask: "chars",
+        });
+
+        gsap
+          .timeline({ defaults: { ease: "expo.out" } })
+          .from(split.chars, { yPercent: 110, duration: 1.2, stagger: 0.035 })
+          .from(
+            ".hero-reveal",
+            { y: 24, autoAlpha: 0, duration: 0.9, stagger: 0.08 },
+            "-=0.8",
+          );
+
+        // Content drifts up and fades as the hero scrolls away.
+        gsap.to(".hero-content", {
+          yPercent: -18,
+          autoAlpha: 0,
+          ease: "none",
+          scrollTrigger: {
+            trigger: rootRef.current,
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+          },
+        });
+
+        return () => split.revert();
+      });
+    },
+    { scope: rootRef },
+  );
+
   return (
-    <section className="hero">
-      <div className="hero-container">
-        <div className="hero-content">
-          <div className="hero-header">
-            <h1 className="hero-name">Erik Martín Garzón</h1>
-            <p className="hero-role">Full Stack Developer</p>
-          </div>
+    <section
+      className="hero"
+      id="top"
+      ref={rootRef}
+    >
+      <Grainient
+        className="hero-bg"
+        colors={HERO_COLORS}
+        angle={35}
+        flow={1.1}
+        speed={0.9}
+        silk={0.25}
+        grainAmount={0.06}
+      />
 
-          <p className="hero-tagline">
-            I build scalable web applications focused on product and user
-            experience
+      <div className="hero-content">
+        <p className="section-label hero-reveal">
+          Software developer · Barcelona
+        </p>
+
+        <h1
+          className="hero-name"
+          aria-label="Erik Martín Garzón"
+        >
+          <span
+            className="hero-name-line"
+            aria-hidden="true"
+          >
+            Erik Martín
+          </span>
+          <span
+            className="hero-name-line"
+            aria-hidden="true"
+          >
+            Garzón
+          </span>
+        </h1>
+
+        <div className="hero-rotator hero-reveal">
+          <span>I build</span>
+          <RotatingText
+            texts={["interfaces", "mobile apps", "AI tools", "APIs"]}
+            mainClassName="hero-rotator-word"
+            splitBy="characters"
+            staggerDuration={0.025}
+            staggerFrom="last"
+            rotationInterval={2200}
+          />
+        </div>
+
+        <div className="hero-bottom">
+          <p className="hero-tagline hero-reveal">
+            Front-end first, back-end when the feature needs it, and AI wherever
+            it saves someone time.
           </p>
 
-          <div className="hero-stack">
-            <span className="stack-label">Specialized in:</span>
-            <div className="tech-carousel">
-              <div className="carousel-track">
-                <div className="carousel-item">
-                  <img
-                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg"
-                    alt="Vue.js"
-                    title="Vue.js"
-                  />
-                </div>
-                <div className="carousel-item">
-                  <img
-                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
-                    alt="React"
-                    title="React"
-                  />
-                </div>
-                <div className="carousel-item">
-                  <img
-                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
-                    alt="Node.js"
-                    title="Node.js"
-                  />
-                </div>
-                <div className="carousel-item">
-                  <img
-                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg"
-                    alt="PHP"
-                    title="PHP"
-                  />
-                </div>
-                <div className="carousel-item">
-                  <img
-                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"
-                    alt="PostgreSQL"
-                    title="PostgreSQL"
-                  />
-                </div>
-                <div className="carousel-item">
-                  <img
-                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
-                    alt="JavaScript"
-                    title="JavaScript"
-                  />
-                </div>
-                <div className="carousel-item">
-                  <img
-                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg"
-                    alt="TypeScript"
-                    title="TypeScript"
-                  />
-                </div>
-                <div className="carousel-item">
-                  <img
-                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg"
-                    alt="Bootstrap"
-                    title="Bootstrap"
-                  />
-                </div>
-                <div className="carousel-item">
-                  <img
-                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg"
-                    alt="Vue.js"
-                    title="Vue.js"
-                  />
-                </div>
-                <div className="carousel-item">
-                  <img
-                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
-                    alt="React"
-                    title="React"
-                  />
-                </div>
-                <div className="carousel-item">
-                  <img
-                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
-                    alt="Node.js"
-                    title="Node.js"
-                  />
-                </div>
-                <div className="carousel-item">
-                  <img
-                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg"
-                    alt="PHP"
-                    title="PHP"
-                  />
-                </div>
-                <div className="carousel-item">
-                  <img
-                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"
-                    alt="PostgreSQL"
-                    title="PostgreSQL"
-                  />
-                </div>
-                <div className="carousel-item">
-                  <img
-                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
-                    alt="JavaScript"
-                    title="JavaScript"
-                  />
-                </div>
-                <div className="carousel-item">
-                  <img
-                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg"
-                    alt="TypeScript"
-                    title="TypeScript"
-                  />
-                </div>
-                <div className="carousel-item">
-                  <img
-                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg"
-                    alt="Bootstrap"
-                    title="Bootstrap"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Location */}
-          <p className="hero-location">
-            📍 Barcelona, Spain • Available for remote and on-site work
-          </p>
-
-          {/* CTA Buttons */}
-          <div className="hero-cta">
-            {SHOW_PROJECTS_BUTTON && (
-              <a
-                href="https://github.com/eriik1212"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-primary"
-              >
-                View Projects
-              </a>
-            )}
+          <div className="hero-actions hero-reveal">
             <a
-              href="https://www.linkedin.com/in/erikmartingarzon/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-secondary"
+              href="#work"
+              className="pill-btn"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToTarget("#work");
+              }}
             >
-              Get in Touch
+              See my work <span className="arrow">→</span>
             </a>
+            <span className="hero-status">
+              <span
+                className="hero-status-dot"
+                aria-hidden="true"
+              />
+              Open to remote &amp; on-site roles
+            </span>
           </div>
         </div>
-        <ExperienceCounter />
+      </div>
+
+      <div
+        className="hero-scroll hero-reveal"
+        aria-hidden="true"
+      >
+        <span>Scroll</span>
+        <span className="hero-scroll-line" />
       </div>
     </section>
   );

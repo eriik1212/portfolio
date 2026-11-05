@@ -1,0 +1,73 @@
+.contact {
+  padding: clamp(64px, 10vh, 120px) clamp(8px, 1.5vw, 20px) clamp(8px, 1.5vw, 20px);
+}
+
+.contact-inner {
+  position: relative;
+  padding: clamp(48px, 9vh, 110px) var(--gutter) 28px;
+  border-radius: var(--radius);
+  background: var(--ink);
+  color: var(--cream);
+  overflow: hidden;
+}
+
+.about-card {
+  max-width: 420px;
+  margin-left: auto;
+  margin-bottom: clamp(48px, 8vh, 96px);
+  padding: 24px;
+  border: var(--border);
+  border-color: var(--ink);
+  border-radius: 22px;
+  background: var(--pink);
+  color: var(--ink);
+  rotate: 3deg;
+  box-shadow: 6px 6px 0 var(--sun);
+}
+
+.about-text {
+  margin-top: 10px;
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.contact-label {
+  color: var(--sun);
+}
+
+.contact-title {
+  margin-top: 18px;
+  max-width: 14ch;
+  font-size: clamp(2.8rem, 9vw, 8.5rem);
+  font-weight: 800;
+  line-height: 0.92;
+  letter-spacing: -0.055em;
+}
+
+.contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: clamp(32px, 6vh, 56px);
+}
+
+.contact-actions .pill-btn {
+  padding: 18px 32px;
+  font-size: 1.1rem;
+  border-color: var(--cream);
+  box-shadow: none;
+}
+
+.contact-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: clamp(64px, 12vh, 140px);
+  padding-top: 20px;
+  border-top: 1px solid rgb(255 244 230 / 0.2);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: rgb(255 244 230 / 0.6);
+}

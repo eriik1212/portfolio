@@ -1,0 +1,126 @@
+.experience {
+  padding: 0 clamp(8px, 1.5vw, 20px);
+}
+
+.experience-panel {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  align-items: center;
+  gap: clamp(32px, 5vw, 80px);
+  min-height: 100svh;
+  padding: clamp(96px, 12vh, 128px) var(--gutter) clamp(48px, 8vh, 96px);
+  border-radius: var(--radius);
+  background: var(--ink);
+  color: var(--cream);
+  overflow: hidden;
+}
+
+.experience-label {
+  color: var(--sun);
+}
+
+.experience-title {
+  margin-top: 20px;
+  font-size: clamp(2rem, 4.2vw, 3.8rem);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+}
+
+.experience-counter {
+  margin-top: clamp(28px, 5vh, 56px);
+}
+
+.counter-big {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 0.35em;
+  font-size: clamp(2.6rem, 6.5vw, 6rem);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.05em;
+  color: var(--sun);
+}
+
+.counter-small {
+  margin-top: 14px;
+  font-family: var(--font-mono);
+  font-size: clamp(0.85rem, 1.2vw, 1rem);
+  color: rgb(255 244 230 / 0.65);
+  font-variant-numeric: tabular-nums;
+}
+
+.role-stack {
+  position: relative;
+  list-style: none;
+  display: grid;
+}
+
+.role-card {
+  grid-area: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: clamp(300px, 46vh, 420px);
+  padding: clamp(24px, 3vw, 40px);
+  border: var(--border);
+  border-radius: var(--radius);
+  background: var(--card-color);
+  color: var(--ink);
+  box-shadow: 8px 8px 0 rgb(0 0 0 / 0.35);
+  transform-origin: center top;
+  will-change: transform;
+}
+
+.role-tag {
+  align-self: flex-start;
+  padding: 4px 12px;
+  border: var(--border);
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 0.85rem;
+  background: var(--paper);
+}
+
+.role-title {
+  margin-top: auto;
+  font-size: clamp(1.8rem, 3.2vw, 3rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.role-text {
+  max-width: 40ch;
+  font-size: clamp(1rem, 1.3vw, 1.15rem);
+  font-weight: 500;
+}
+
+/* Without the pinned animation the cards simply stack vertically */
+@media (max-width: 899px), (prefers-reduced-motion: reduce) {
+  .experience-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .role-stack {
+    gap: 16px;
+  }
+
+  .role-card {
+    grid-area: auto;
+    min-height: 0;
+  }
+
+  .role-card:nth-child(odd) {
+    rotate: -1.2deg;
+  }
+
+  .role-card:nth-child(even) {
+    rotate: 1.2deg;
+  }
+
+  .role-title {
+    margin-top: 12px;
+  }
+}

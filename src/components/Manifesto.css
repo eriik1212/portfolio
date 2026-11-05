@@ -1,0 +1,20 @@
+.manifesto {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: clamp(96px, 18vh, 200px) var(--gutter);
+}
+
+.manifesto-label {
+  color: var(--tomato);
+}
+
+.manifesto-reveal.scroll-reveal {
+  margin: 24px 0 0;
+}
+
+.manifesto-text.scroll-reveal-text {
+  font-size: clamp(1.9rem, 4.6vw, 4.3rem);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+}
