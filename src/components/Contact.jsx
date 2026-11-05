@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { gsap, SplitText, useGSAP } from "../lib/motion";
+import { useI18n } from "../i18n";
 import "./Contact.css";
 
 const LINKS = [
@@ -9,6 +10,7 @@ const LINKS = [
 
 export default function Contact() {
   const rootRef = useRef(null);
+  const { t } = useI18n();
 
   useGSAP(
     () => {
@@ -79,16 +81,12 @@ export default function Contact() {
     >
       <div className="contact-inner">
         <aside className="about-card">
-          <p className="section-label">Off the clock</p>
-          <p className="about-text">
-            When I'm not shipping features, I'm probably trying a new AI model
-            on my own machine or wandering around Barcelona in search of the
-            next good coffee.
-          </p>
+          <p className="section-label">{t.contact.aboutLabel}</p>
+          <p className="about-text">{t.contact.about}</p>
         </aside>
 
-        <p className="section-label contact-label">Contact</p>
-        <h2 className="contact-title">Let's build something people remember.</h2>
+        <p className="section-label contact-label">{t.contact.label}</p>
+        <h2 className="contact-title">{t.contact.title}</h2>
 
         <div className="contact-actions">
           {LINKS.map((link) => (
@@ -106,7 +104,7 @@ export default function Contact() {
 
         <div className="contact-bottom">
           <span>© {new Date().getFullYear()} Erik Martín Garzón</span>
-          <span>Barcelona · Remote &amp; on-site</span>
+          <span>{t.contact.location}</span>
         </div>
       </div>
     </footer>

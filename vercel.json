@@ -1,0 +1,3 @@
+{
+  "rewrites": [{ "source": "/:lang(es|en|ca)", "destination": "/index.html" }]
+}

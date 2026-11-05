@@ -1,31 +1,22 @@
 import ScrollVelocity from "./bits/ScrollVelocity";
+import { useI18n } from "../i18n";
 import "./Stack.css";
 
-const ROWS = [
-  "React ✦ Vue.js ✦ TypeScript ✦ JavaScript ✦ ",
-  "Node.js ✦ PHP ✦ PostgreSQL ✦ REST APIs ✦ Local AI ✦ ",
-];
-
-const GROUPS = [
-  { name: "Front-end", items: ["React", "Vue.js", "TypeScript", "JavaScript", "Bootstrap"] },
-  { name: "Back-end", items: ["Node.js", "PHP", "REST APIs"] },
-  { name: "Data", items: ["PostgreSQL", "pgAdmin"] },
-  { name: "AI", items: ["Local models", "Process automation"] },
-];
-
 export default function Stack() {
+  const { t } = useI18n();
+
   return (
     <section
       className="stack"
       aria-labelledby="stack-title"
     >
       <div className="stack-head">
-        <p className="section-label stack-label">Toolbox</p>
+        <p className="section-label stack-label">{t.stack.label}</p>
         <h2
           className="stack-title"
           id="stack-title"
         >
-          The stack I reach for
+          {t.stack.title}
         </h2>
       </div>
 
@@ -34,7 +25,7 @@ export default function Stack() {
         aria-hidden="true"
       >
         <ScrollVelocity
-          texts={ROWS}
+          texts={t.stack.rows}
           velocity={60}
           numCopies={4}
           className="stack-marquee"
@@ -44,7 +35,7 @@ export default function Stack() {
       </div>
 
       <ul className="stack-groups">
-        {GROUPS.map((group) => (
+        {t.stack.groups.map((group) => (
           <li
             key={group.name}
             className="stack-group"

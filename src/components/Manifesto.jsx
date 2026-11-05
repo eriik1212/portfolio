@@ -1,13 +1,16 @@
 import ScrollReveal from "./bits/ScrollReveal";
+import { useI18n } from "../i18n";
 import "./Manifesto.css";
 
 export default function Manifesto() {
+  const { t } = useI18n();
+
   return (
     <section
       className="manifesto"
-      aria-label="About my work"
+      aria-label={t.manifesto.aria}
     >
-      <p className="section-label manifesto-label">What I do</p>
+      <p className="section-label manifesto-label">{t.manifesto.label}</p>
       <ScrollReveal
         baseOpacity={0.12}
         enableBlur
@@ -19,10 +22,7 @@ export default function Manifesto() {
         rotationEnd="bottom center"
         wordAnimationEnd="bottom 70%"
       >
-        I care about the part of software people actually touch. I turn ideas
-        into fast, friendly interfaces, jump into the back-end when a feature
-        needs it, and use AI to make the way my team works a little smarter
-        every week.
+        {t.manifesto.text}
       </ScrollReveal>
     </section>
   );

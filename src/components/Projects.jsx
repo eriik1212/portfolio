@@ -1,58 +1,20 @@
 import { useRef } from "react";
 import { gsap, useGSAP } from "../lib/motion";
+import { useI18n } from "../i18n";
 import "./Projects.css";
 
+// Text for each project lives in the i18n dictionaries (projects.items[id]).
 const PROJECTS = [
-  {
-    id: "vibra",
-    name: "ViBra",
-    kicker: "Running club platform",
-    summary:
-      "Everything a social running club needs in one place: members, events, bookings and a blog where coaches share their training tips.",
-    features: [
-      "Desktop admin panel to run the club",
-      "Mobile app for runners and quick coach tasks",
-      "Events, bookings and member management",
-    ],
-    tags: ["Desktop app", "Mobile app", "Full stack"],
-    color: "var(--mint)",
-    Visual: VibraVisual,
-  },
-  {
-    id: "ai-studio",
-    name: "AI Content Studio",
-    kicker: "One sentence → one video",
-    summary:
-      "A desktop app that takes an idea summed up in a single sentence and turns it into a script, dialogue and a fully rendered video, ready to publish on YouTube.",
-    features: [
-      "End-to-end automated pipeline",
-      "Runs entirely on local AI models",
-      "Export framed and ready for YouTube",
-    ],
-    tags: ["Desktop app", "Local AI", "Automation"],
-    color: "var(--lilac)",
-    Visual: StudioVisual,
-  },
-  {
-    id: "consolat",
-    name: "Consolat de Mar",
-    kicker: "Google Form → pirate game",
-    summary:
-      "A long Google Form that measures how ready an entrepreneurial project is, turned into an interactive pirate game: get your ship ready to set sail, just like your business. Built in Unity for the Xarxa d'Emprenedoria Universitària de Barcelona. I built the API behind it and integrated it into the Unity game.",
-    features: [
-      "API endpoints for answers, progress and stats",
-      "API integration with the Unity project",
-      "User account management",
-      "PostgreSQL database designed with pgAdmin",
-    ],
-    tags: ["REST API", "PostgreSQL", "Unity"],
-    color: "var(--sun)",
-    Visual: ConsolatVisual,
-  },
+  { id: "vibra", name: "ViBra", color: "var(--mint)", Visual: VibraVisual },
+  { id: "ai-studio", name: "AI Content Studio", color: "var(--lilac)", Visual: StudioVisual },
+  { id: "consolat", name: "Consolat de Mar", color: "var(--sun)", Visual: ConsolatVisual },
 ];
 
 export default function Projects() {
   const rootRef = useRef(null);
+  const { t } = useI18n();
+  const tp = t.projects;
+  const projects = PROJECTS.map((p) => ({ ...p, ...tp.items[p.id] }));
 
   useGSAP(
     () => {
@@ -92,22 +54,19 @@ export default function Projects() {
       <div className="work-pin">
         <div className="work-track">
           <header className="work-intro">
-            <p className="section-label work-label">Selected work</p>
+            <p className="section-label work-label">{tp.label}</p>
             <h2
               className="work-title"
               id="work-title"
             >
-              Three projects,
+              {tp.title[0]}
               <br />
-              <em>coming out soon.</em>
+              <em>{tp.title[1]}</em>
             </h2>
-            <p className="work-note">
-              They're not public yet, so here's what they do and how I built
-              them. Keep scrolling →
-            </p>
+            <p className="work-note">{tp.note}</p>
           </header>
 
-          {PROJECTS.map((project, i) => (
+          {projects.map((project, i) => (
             <article
               key={project.id}
               className="project-card"
@@ -116,7 +75,7 @@ export default function Projects() {
               <div className="project-info">
                 <div className="project-meta">
                   <span className="project-index">0{i + 1}</span>
-                  <span className="project-status">Private · coming soon</span>
+                  <span className="project-status">{tp.status}</span>
                 </div>
                 <p className="project-kicker">{project.kicker}</p>
                 <h3 className="project-name">{project.name}</h3>
@@ -127,8 +86,8 @@ export default function Projects() {
                   ))}
                 </ul>
                 <ul className="project-tags">
-                  {project.tags.map((t) => (
-                    <li key={t}>{t}</li>
+                  {project.tags.map((tag) => (
+                    <li key={tag}>{tag}</li>
                   ))}
                 </ul>
               </div>
@@ -147,7 +106,7 @@ export default function Projects() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <span>More on GitHub</span>
+            <span>{tp.more}</span>
             <span className="work-more-arrow">↗</span>
           </a>
         </div>
@@ -159,6 +118,7 @@ export default function Projects() {
 /* Illustrative mock-ups: the projects are private, so no screenshots yet. */
 
 function VibraVisual() {
+  const m = useI18n().t.projects.vibraMock;
   return (
     <div className="vis-vibra">
       <div className="vis-window">
@@ -179,18 +139,18 @@ function VibraVisual() {
       </div>
       <div className="vis-phone">
         <div className="vis-phone-notch" />
-        <p className="vis-phone-title">Next runs</p>
+        <p className="vis-phone-title">{m.title}</p>
         <div className="vis-event">
-          <b>Long run</b>
-          <span className="vis-chip">Booked ✓</span>
+          <b>{m.events[0]}</b>
+          <span className="vis-chip">{m.booked}</span>
         </div>
         <div className="vis-event">
-          <b>Intervals</b>
-          <span className="vis-chip vis-chip--ghost">Join</span>
+          <b>{m.events[1]}</b>
+          <span className="vis-chip vis-chip--ghost">{m.join}</span>
         </div>
         <div className="vis-event">
-          <b>Coach blog</b>
-          <span className="vis-chip vis-chip--ghost">Read</span>
+          <b>{m.events[2]}</b>
+          <span className="vis-chip vis-chip--ghost">{m.read}</span>
         </div>
       </div>
     </div>
@@ -198,12 +158,12 @@ function VibraVisual() {
 }
 
 function StudioVisual() {
-  const steps = ["Idea", "Script", "Dialogue", "Video", "Render"];
+  const m = useI18n().t.projects.studioMock;
   return (
     <div className="vis-studio">
-      <p className="vis-prompt">“A sentence is all it takes…”</p>
+      <p className="vis-prompt">{m.prompt}</p>
       <ol className="vis-pipeline">
-        {steps.map((s, i) => (
+        {m.steps.map((s, i) => (
           <li
             key={s}
             style={{ "--i": i }}
@@ -212,7 +172,7 @@ function StudioVisual() {
           </li>
         ))}
       </ol>
-      <span className="vis-badge">● local models</span>
+      <span className="vis-badge">{m.badge}</span>
     </div>
   );
 }
@@ -342,14 +302,15 @@ function PirateShip() {
 
 // Each API call gets the ship one step closer to setting sail.
 const VOYAGE_STEPS = [
-  { method: "POST", path: "/accounts", effect: "crew aboard" },
-  { method: "POST", path: "/answers", effect: "cargo loaded" },
-  { method: "PUT", path: "/progress", effect: "sails raised" },
-  { method: "GET", path: "/stats", effect: "course plotted" },
+  { method: "POST", path: "/accounts" },
+  { method: "POST", path: "/answers" },
+  { method: "PUT", path: "/progress" },
+  { method: "GET", path: "/stats" },
 ];
 
 function ConsolatVisual() {
   const rootRef = useRef(null);
+  const m = useI18n().t.projects.voyageMock;
 
   useGSAP(
     () => {
@@ -400,7 +361,7 @@ function ConsolatVisual() {
 
       <div className="vis-ready">
         <div className="vis-ready-head">
-          <span>Ready to set sail</span>
+          <span>{m.ready}</span>
           <span className="vis-percent">100%</span>
         </div>
         <div className="vis-bar">
@@ -409,7 +370,7 @@ function ConsolatVisual() {
       </div>
 
       <ul className="vis-log">
-        {VOYAGE_STEPS.map((step) => (
+        {VOYAGE_STEPS.map((step, i) => (
           <li
             key={step.path}
             className="vis-log-line"
@@ -417,12 +378,12 @@ function ConsolatVisual() {
             <span className="vis-ok">200</span>
             <span className="vis-method">{step.method}</span>
             <span className="vis-path">{step.path}</span>
-            <span className="vis-effect">→ {step.effect}</span>
+            <span className="vis-effect">→ {m.effects[i]}</span>
           </li>
         ))}
       </ul>
 
-      <span className="vis-ready-done">⚓ Anchors up!</span>
+      <span className="vis-ready-done">{m.done}</span>
     </div>
   );
 }
