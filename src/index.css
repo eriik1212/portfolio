@@ -112,6 +112,8 @@ button {
   font-size: 1rem;
   background: var(--ink);
   color: var(--cream);
+  /* Dark buttons get a light border so the ink drop shadow reads as a separate layer */
+  border-color: var(--paper);
   box-shadow: 4px 4px 0 var(--ink);
   transition:
     transform 0.2s ease,
@@ -132,11 +134,13 @@ button {
 .pill-btn--light {
   background: var(--paper);
   color: var(--ink);
+  border-color: var(--ink);
 }
 
 .pill-btn--sun {
   background: var(--sun);
   color: var(--ink);
+  border-color: var(--ink);
 }
 
 .pill-btn .arrow {
